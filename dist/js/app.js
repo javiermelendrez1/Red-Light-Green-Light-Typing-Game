@@ -3,6 +3,11 @@ console.log('app.js is connected');
 const API_URL = 'https://api.quotable.io/random?minLength=100';
 //going to query for the display container quote
 const displayQuote = document.querySelector('.display-container-quote');
+//going to query for the user input in the text area
+const userInput = document.querySelector('.display-container-quote-input');
+
+//create an array that will hold the characters of the quote string
+let quoteArray = []; //initially the quote is just blank
 //create a async function 
 const fetchApi = async () => {
     //read in the quote
@@ -12,8 +17,16 @@ const fetchApi = async () => {
         //take json input parse it and convert it into javascript object
         //save into data
         const data = await response.json();
-        //change the display quote to the quote of the fetched api
-        displayQuote.textContent = data.content;
+        //set the quote string equal to my array and call the split function to get every character
+        quoteArray = data.content.split('');
+        //need to loop through this array and create a span for every single character
+        for(let ch of quoteArray){
+            let span = document.createElement('span');
+            span.innerText = ch;
+            displayQuote.append(span);
+        }
+        //i want to see if this worked so i am going to print the array
+        // console.log(quoteArray);
     } catch(error){
         console.log(error);
     }
@@ -24,3 +37,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //call the function to fetch the api
     fetchApi();
 });
+//add an event listener to the text area
+//whenever the user updates or does anything the text area this event listener should be triggered
+userInput.addEventListener('input', (e) => {
+    //test to see if the event listener is working
+    // console.log(e.target.value);
+    //whenever this function is called it means that the text area has been changed
+    //everytime this function is called we are going to create a new array of characters built from the text area
+    const textAreaArrray = e.target.value.split('');
+    //lets see if this works so print the array 
+    // console.log(textAreaArrray);
+
+})

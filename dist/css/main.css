@@ -28,4 +28,13 @@
   width: 40vw;
   margin: 0 auto;
 }
+
+.correct {
+  color: green;
+}
+
+.wrong {
+  color: red;
+  text-decoration: underline;
+}
 /*# sourceMappingURL=main.css.map */
