@@ -47,5 +47,29 @@ userInput.addEventListener('input', (e) => {
     const textAreaArrray = e.target.value.split('');
     //lets see if this works so print the array 
     // console.log(textAreaArrray);
+    compareArrays(textAreaArrray);
 
 })
+//now we should probably create a function that compares the span with th text area array 
+// if they are equal add the correct class if they are not add the wrong class
+//create a function that takes in two arrays
+const compareArrays = (arr1) => {
+    //arr 1 is going to be the user
+    //i need to query for all the spans's i created
+    const chSpans = displayQuote.querySelectorAll('span');
+    //loop through the text area array and see if the text is equal to the ch.innerhtml
+    for(let i = 0; i < arr1.length; i++){
+        //if the characters are equal to each other add the correct class to the chSpan
+        if(arr1[i] === chSpans[i].innerText){
+            chSpans[i].classList.add('correct');
+            //remove the wrong class if it was already on
+            chSpans[i].classList.remove('wrong');
+        } else if (arr1[i] !== chSpans[i].innerText){
+            chSpans[i].classList.add('wrong');
+            chSpans[i].classList.remove('correct');
+        } else if (arr1[i] === null) {
+            chSpans[i].classList.remove('correct');
+            chSpans[i].classList.remove('wrong');
+        }
+    }
+}
