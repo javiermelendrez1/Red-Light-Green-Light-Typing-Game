@@ -4,3 +4,6 @@ with the user array we are going to compare it with the quote array?
 to apply the styling while the user is inputting you can not have the display quote as one single string
 you need to break the string into many different character spans so that you can apply the style classes 
 to each invidual character
+
+i could not use a counter inside the for loop because everytime the input updates the counter increments many times inside
+that for loop for every call not relative to how many are correct in the array

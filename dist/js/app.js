@@ -5,9 +5,15 @@ const API_URL = 'https://api.quotable.io/random?minLength=100';
 const displayQuote = document.querySelector('.display-container-quote');
 //going to query for the user input in the text area
 const userInput = document.querySelector('.display-container-quote-input');
-
+//going to try creating an array that will hold all boolean values true and false
+//the array will be the length of the character quote array
+//everytime the user gets the input correct we set the index to true
+//at the end of the input update we check if all the values in the array are true
+//if all the values are true then 
+let booleanArray = [];
 //create an array that will hold the characters of the quote string
 let quoteArray = []; //initially the quote is just blank
+
 //create a async function 
 const fetchApi = async () => {
     //read in the quote
@@ -24,7 +30,10 @@ const fetchApi = async () => {
             let span = document.createElement('span');
             span.innerText = ch;
             displayQuote.append(span);
+            //the length of this array will be the length of our boolean array so just push false
+            booleanArray.push(false); //everytime it loops false will be pushed in to initialize 
         }
+        console.log(booleanArray);
         //i want to see if this worked so i am going to print the array
         // console.log(quoteArray);
     } catch(error){
@@ -47,7 +56,11 @@ userInput.addEventListener('input', (e) => {
     const textAreaArrray = e.target.value.split('');
     //lets see if this works so print the array 
     // console.log(textAreaArrray);
+
+    //call the function to compare characters
     compareArrays(textAreaArrray);
+    //call the boolean array lets see whats inside
+    console.log(booleanArray);
 
 })
 //now we should probably create a function that compares the span with th text area array 
@@ -64,12 +77,16 @@ const compareArrays = (arr1) => {
             chSpans[i].classList.add('correct');
             //remove the wrong class if it was already on
             chSpans[i].classList.remove('wrong');
+            //change the index value boolean array to true
+            booleanArray[i] = true;
         } else if (arr1[i] !== chSpans[i].innerText){
             chSpans[i].classList.add('wrong');
             chSpans[i].classList.remove('correct');
+            booleanArray[i] = false;
         } else if (arr1[i] === null) {
             chSpans[i].classList.remove('correct');
             chSpans[i].classList.remove('wrong');
         }
     }
+
 }
