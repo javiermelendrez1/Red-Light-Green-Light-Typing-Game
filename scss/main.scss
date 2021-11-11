@@ -22,3 +22,11 @@
     color: red;
     text-decoration: underline;
 }
+.progress-bar-container {
+    background-color: black;
+    &-bar {
+        height: 24px;
+        width: 0%;
+        background-color: blue;
+    }
+}

@@ -37,4 +37,14 @@
   color: red;
   text-decoration: underline;
 }
+
+.progress-bar-container {
+  background-color: black;
+}
+
+.progress-bar-container-bar {
+  height: 24px;
+  width: 0%;
+  background-color: blue;
+}
 /*# sourceMappingURL=main.css.map */

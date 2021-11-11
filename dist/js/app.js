@@ -13,7 +13,10 @@ const userInput = document.querySelector('.display-container-quote-input');
 let booleanArray = [];
 //create an array that will hold the characters of the quote string
 let quoteArray = []; //initially the quote is just blank
-
+//creating a counter for the progress bar
+let progressBarCounter = 0;
+//query for the progress bar
+const progresBar = document.querySelector('.progress-bar-container-bar');
 //create a async function 
 const fetchApi = async () => {
     //read in the quote
@@ -85,6 +88,10 @@ const compareArrays = (arr1) => {
             chSpans[i].classList.remove('wrong');
             //change the index value boolean array to true
             booleanArray[i] = true;
+            const result = booleanArray.filter(boolean => boolean == true);
+            let width = result.length / booleanArray.length;
+            width = width * 100;
+            progresBar.style.width = width + '%';
         } else if (arr1[i] !== chSpans[i].innerText){
             chSpans[i].classList.add('wrong');
             chSpans[i].classList.remove('correct');
