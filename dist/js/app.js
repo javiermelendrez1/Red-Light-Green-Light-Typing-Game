@@ -60,7 +60,13 @@ userInput.addEventListener('input', (e) => {
     //call the function to compare characters
     compareArrays(textAreaArrray);
     //call the boolean array lets see whats inside
-    console.log(booleanArray);
+    // console.log(booleanArray);
+    //filter the boolean array for false 
+    const result = booleanArray.filter(boolean => boolean == false);
+    console.log(result);
+    if(result.length === 0){
+        console.log('array is empty');
+    }
 
 })
 //now we should probably create a function that compares the span with th text area array 
@@ -88,5 +94,5 @@ const compareArrays = (arr1) => {
             chSpans[i].classList.remove('wrong');
         }
     }
-
+    
 }
