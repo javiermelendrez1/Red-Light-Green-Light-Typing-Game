@@ -17,6 +17,10 @@ let quoteArray = []; //initially the quote is just blank
 let progressBarCounter = 0;
 //query for the progress bar
 const progresBar = document.querySelector('.progress-bar-container-bar');
+//query for the timer 
+const timer = document.querySelector('.timer-container-timer');
+//create a variable that will be the starting time
+let startingClock = 60; //60seconds to complete the quote
 //create a async function 
 const fetchApi = async () => {
     //read in the quote
@@ -48,6 +52,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
     //call the function to fetch the api
     fetchApi();
+    //call the timer and interval to start the clock
+    let timer = setInterval(tiktok, 1000);
 });
 //add an event listener to the text area
 //whenever the user updates or does anything the text area this event listener should be triggered
@@ -102,4 +108,11 @@ const compareArrays = (arr1) => {
         }
     }
     
+}
+//create a function that subtracts the time
+const tiktok = () => {
+    //decrement the time
+    startingClock--;
+    //update the text of the timer
+    timer.textContent = startingClock;
 }
