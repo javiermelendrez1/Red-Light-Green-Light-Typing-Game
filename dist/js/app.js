@@ -20,7 +20,7 @@ const progresBar = document.querySelector('.progress-bar-container-bar');
 //query for the timer 
 const timer = document.querySelector('.timer-container-timer');
 //create a variable that will be the starting time
-let startingClock = 60; //60seconds to complete the quote
+let startingClock = 5; //60seconds to complete the quote
 //create a async function 
 const fetchApi = async () => {
     //read in the quote
@@ -53,7 +53,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //call the function to fetch the api
     fetchApi();
     //call the timer and interval to start the clock
-    let timer = setInterval(tiktok, 1000);
+    var clock = setInterval(function(){
+        startingClock--;
+        if(startingClock === 0){
+            clearInterval(clock);
+        }
+        //decrement the time
+        //update the text of the timer
+        timer.textContent = startingClock;
+    }, 1000);
+
 });
 //add an event listener to the text area
 //whenever the user updates or does anything the text area this event listener should be triggered
@@ -74,9 +83,8 @@ userInput.addEventListener('input', (e) => {
     const result = booleanArray.filter(boolean => boolean == false);
     console.log(result);
     if(result.length === 0){
-        console.log('array is empty');
+        prompt('you have completed the quote');
     }
-
 })
 //now we should probably create a function that compares the span with th text area array 
 // if they are equal add the correct class if they are not add the wrong class
@@ -111,8 +119,22 @@ const compareArrays = (arr1) => {
 }
 //create a function that subtracts the time
 const tiktok = () => {
+    //timeOut();
+    if(startingClock === 0){
+        clearInterval(timer);
+    }
     //decrement the time
     startingClock--;
     //update the text of the timer
     timer.textContent = startingClock;
+}
+//the key input should also check if the user has won 
+//if clock reaches 0 the user has lost 
+//if user is at the end of the string the user has won
+
+//this is a function that checks if the clock has run out
+const timeOut = () => {
+    if(startingClock === 0){
+        prompt('you lost time has run out');
+    }
 }
