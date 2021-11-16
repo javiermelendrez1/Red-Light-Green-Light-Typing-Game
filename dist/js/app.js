@@ -20,7 +20,8 @@ const progresBar = document.querySelector('.progress-bar-container-bar');
 //query for the timer 
 const timer = document.querySelector('.timer-container-timer');
 //create a variable that will be the starting time
-let startingClock = 5; //60seconds to complete the quote
+let startingClock = 60; //60seconds to complete the quote
+var clock;
 //create a async function 
 const fetchApi = async () => {
     //read in the quote
@@ -53,7 +54,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //call the function to fetch the api
     fetchApi();
     //call the timer and interval to start the clock
-    var clock = setInterval(function(){
+    clock = setInterval(function(){
         startingClock--;
         if(startingClock === 0){
             clearInterval(clock);
@@ -84,6 +85,8 @@ userInput.addEventListener('input', (e) => {
     console.log(result);
     if(result.length === 0){
         prompt('you have completed the quote');
+        //clear the interval if the user has finished the quote 
+        clearInterval(clock);
     }
 })
 //now we should probably create a function that compares the span with th text area array 
